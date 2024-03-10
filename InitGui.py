@@ -1,5 +1,3 @@
-import FreeCAD
-
 class CfdCAWorkbench(Workbench):
     MenuText = "CfdCA Workbench"
     Tooltip = "Cfd on Cellular Automata using catlib"
@@ -7,15 +5,21 @@ class CfdCAWorkbench(Workbench):
 
     def Initialize(self):
         """add functions of the Workbench"""
-        from ExportCTL import CommandExportToCTL
+        from Commands.ExportCTL import CommandExportToCTL
+        from Commands.RunSimulation import CommandRunSimulation
+        from Commands.RunPostprocessor import CommandRunPostprocessor
+
         FreeCADGui.addCommand('ExportToCTL', CommandExportToCTL())
-        self.list = ["ExportToCTL"]
+        FreeCADGui.addCommand('RunSimulation', CommandRunSimulation())
+        FreeCADGui.addCommand('RunPostprocessor', CommandRunPostprocessor())
+
+
+        self.list = ["ExportToCTL", "RunSimulation", "RunPostprocessor"]
         self.appendMenu("Commands", self.list)
 
 
     def Activated(self):
         print("CfdCA activated! :)")
-
         return
 
     def Deactivated(self):
