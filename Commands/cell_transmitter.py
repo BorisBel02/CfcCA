@@ -15,7 +15,7 @@ class CellTransmitter:
         self.proc = subprocess.Popen(["/home/boris/.local/lib/catlib/models/FHP-MP/build/catmdl_fhpmp_writer"], stdin=subprocess.PIPE)
 
     def TransmitInt(self, i):
-        print('transmit int\n')
+        # print('transmit int\n')
         self.proc.stdin.write(i.to_bytes(4, byteorder="little"))
 
     def TransmitFloat(self, f):
